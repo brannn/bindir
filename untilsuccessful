@@ -1,0 +1,21 @@
+#!/bin/sh
+# Run a command until it returns a successful exit value.
+
+COMMAND=$*
+$*
+
+RES=$?
+
+if [ $RES -eq 0 ]
+then
+	exit 0
+
+elif [ $RES -eq 127 ]
+then
+	echo "-- Command not found."
+	exit 1
+else
+	echo "-- Failed. Retrying…"
+	sleep 0.5
+	exec untilsuccessful $*
+fi

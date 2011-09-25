@@ -1,0 +1,15 @@
+#!/usr/bin/perl
+
+# Convert a Unix timestamp to local readable format
+
+use POSIX qw(strftime);
+
+$num_args = $#ARGV + 1;
+die "usage: $0 epochtime" if ($num_args != 1);
+
+$tz = `date +%z |cut -c 3`; 
+$offset = $tz * 3600;
+$epoch_time = $ARGV[0];
+$local_string = strftime "%a, %e %b %Y %T GMT-$tz", gmtime($epoch_time - $offset);
+
+printf "%s\n", $local_string;
