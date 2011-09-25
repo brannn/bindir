@@ -1,4 +1,6 @@
 #!/usr/bin/perl -l
+# Author       : Brandon Huey <brandon.huey@me.com>
+# Description  : Fast and thorough way to delete too many files, leaving dir structure
 
 use Getopt::Long;
 use File::Find;
